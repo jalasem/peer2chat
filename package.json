@@ -1,0 +1,16 @@
+{
+  "name": "peer2talk",
+  "version": "0.0.1",
+  "description": "A Webrtc Application",
+  "main": "peer-server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Ajala AbdulSamii & Annazofy",
+  "license": "BSD-3-Clause",
+  "dependencies": {
+    "express": "^4.15.2",
+    "mime-types": "^2.1.15",
+    "peer": "^0.2.8"
+  }
+}

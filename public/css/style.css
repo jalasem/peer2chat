@@ -1,0 +1,218 @@
+/*
+    Author: Ajala AbdulSamii Olalekan
+    Email: kgasta@gmail.com
+    Github: github.com/jalasem
+    Note: I have written some custom css here to help you through your design
+*/
+
+body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+nav>.container {
+    width: 95%;
+}
+
+
+/*font size adjustments
+    in your html you can use them for icons and text
+    e.g <i class="icon ion-social-facebook x15"></i> to adjut the font-size of the icon to 1.5rem
+*/
+
+.x1 {
+    font-size: 1rem;
+}
+
+.x15 {
+    font-size: 1.5rem;
+}
+
+.x2 {
+    font-size: 2rem;
+}
+
+.x25 {
+    font-size: 2.5rem;
+}
+
+.x3 {
+    font-size: 3rem;
+}
+
+.x35 {
+    font-size: 3.5rem;
+}
+
+.x4 {
+    font-size: 4rem;
+}
+
+.x45 {
+    font-size: 4.5rem;
+}
+
+.x5 {
+    font-size: 5rem;
+}
+
+.x55 {
+    font-size: 5.5rem;
+}
+
+ul.social i.icon {
+    margin-right: 1rem;
+}
+
+#auth_splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #275B84;
+    background: linear-gradient( purple, #275B84);
+    background-size: 100% 100%;
+    z-index: 10000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+body.stranger {
+    overflow: hidden;
+}
+
+#app-area,
+footer {
+    padding-left: 250px;
+}
+
+@media only screen and (max-width: 992px) {
+    #auth_splash,
+    main,
+    footer {
+        padding-left: 0;
+    }
+}
+
+#slide-out.side-nav.fixed {
+    transform: translateX(0px) translateY(65px) !important;
+    height: calc(100vh - 65px);
+    overflow-y: auto;
+}
+
+#slide-out li a img {
+    width: 3rem;
+    float: left;
+    margin: 5px 0.5rem;
+    border: 1px solid #E91E63;
+}
+
+#slide-out li a img.online {
+    border: 2px solid #4CAF50;
+}
+
+#slide-out li a {
+    line-height: 110%;
+    height: 60px;
+    padding-left: 20px;
+}
+
+#slide-out li a span.name {
+    display: inline-block;
+    margin-top: 0.7rem;
+}
+
+#slide-out li a span.status {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border-radius: 50%;
+    top: 1.2rem;
+    right: 1.5rem;
+}
+
+#slide-out li {
+    /*padding: 5px 0;*/
+}
+
+#app-area {
+    margin-bottom: 0;
+}
+
+#app-area>.col {
+    height: calc(100vh - 64px);
+    padding: 0;
+}
+
+#peer-camera video {
+    height: inherit;
+    width: 100%;
+}
+
+#my-camera video {
+    height: 14rem;
+    width: 100%;
+}
+
+#message-pad {
+    height: calc(100vh - 64px - 17rem);
+    margin-top: -1rem;
+}
+
+span.you {
+    position: absolute;
+    color: white;
+    background: rgba(26, 30, 33, 0.18);
+    border: 1px solid;
+    padding: 5px 0.5rem;
+    right: 7.5%;
+}
+
+#display {
+    height: calc(100vh - 65px - 16rem);
+    margin-bottom: 0;
+    padding-top: 1rem;
+    overflow-y: auto;
+}
+
+#input-message input {
+    height: 40px;
+    font-size: 1.2rem;
+    padding: 0 5px;
+    max-width: 96%;
+}
+
+span.peer {
+    position: absolute;
+    left: 45%;
+    padding: 5px 0.5rem;
+    color: white;
+    border: 1px solid;
+    background: #fbc02d;
+    font-size: 1.5rem;
+}
+
+#display .peerMsg {
+    float: left;
+    background: white;
+    padding: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    margin: 0.3rem 0;
+    min-width: 55%;
+    text-align: center;
+}
+
+#display .myMsg {
+    float: right;
+    background: white;
+    padding: 0.5rem;
+    border-bottom-left-radius: 0.5rem;
+    border-top-left-radius: 0.5rem;
+    margin: 0.3rem 0;
+    min-width: 55%;
+    text-align: center;
+}

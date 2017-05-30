@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Peer2Chat</title>
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/ionicons.min.css">
+  <link rel="stylesheet" href="css/animate.css">
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://www.gstatic.com/firebasejs/3.9.0/firebase.js"></script>
+  <script src="js/shortID.min.js"></script>
+</head>
+
+<body class="stranger">
+  <div id="auth_splash">
+    <div class="container">
+      <div class="card-panel white indigo text center-align">
+        <h2 class="indigo-text text-darken-4">
+          Peer2Chat
+          <br> <small class="flow-text">Connect with friends using WebRTC Technology in a Peer-Peer fashion</small>
+        </h2>
+        <p class="center-align">
+          <button id="signG" class="btn-large red signG waves-effect waves-light">Register or Signin with Google</button>
+        </p>
+      </div>
+    </div>
+  </div>
+  <main id="app" class="hide">
+    <div class="navbar-fixed">
+      <nav class="grey lighten-5">
+        <div class="nav-wrapper container">
+          <a href="#" data-activates="slide-out" class="button-collapse indigo-text text-darken-4"><i class="icon ion-navicon-round"></i></a>
+          <a href="index.html" class="brand-logo indigo-text text-darken-4">
+            <i class="icon ion-mic-a left"></i> Peer2Chat
+          </a>
+          <ul class="right">
+            <li>
+              <a class="signG btn waves-effect pink accent-3 waves-light">Logout</a>
+            </li>
+          </ul>
+          <ul id="slide-out" class="side-nav fixed grey lighten-5">
+            <li><a href="#!" class="waves-effect">
+              <span class="status green"></span>
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle online">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+            <li><a href="#!" class="waves-effect">
+              <img src="https://lh5.googleusercontent.com/-h7t-7_XMQEM/AAAAAAAAAAI/AAAAAAAAAEU/v8ybaGnLW4I/photo.jpg" alt="kgasta@gmail.com" class="circle">
+              <span class="name">James Oloruntoba</span>
+              <br><small class="email">kgasts@gmail.com</small>
+            </a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div id="app-area" class="row">
+      <div class="col m9 camera" id="peer-camera">
+        <span class="peer">Peer</span>
+        <video id="him" autoplay class="yellow darken-2"></video>
+      </div>
+      <div class="col m3 camera" id="my-camera">
+        <span class="you">You</span>
+        <video id="me" class="blue darken-2" autoplay muted></video>
+        <div id="message-pad" class="blue-grey">
+          <div id="display" class="row">
+            <div class="peerMsg">
+              Hello! Are you there?
+            </div>
+            <div class="myMsg">
+              Yes! I am very much here
+            </div>
+            <div class="peerMsg">
+              How are you?
+            </div>
+            <div class="myMsg">
+              I am good
+            </div>
+            <div class="peerMsg">
+              Hello! Are you there?
+            </div>
+            <div class="myMsg">
+              Yes! I am very much here
+            </div>
+            <div class="peerMsg">
+              How are you?
+            </div>
+            <div class="myMsg">
+              I am good
+            </div>
+          </div>
+          <div id="message-input">
+            <form id="input-message">
+              <input class="indigo-text text-darken-4 white" type="text" placeholder="Type message &amp; hit enter">
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/materialize.min.js"></script>
+  <script src="js/peerjs.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
