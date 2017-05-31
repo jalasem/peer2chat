@@ -112,17 +112,40 @@ $(document)
             var connectedRef = firebase.database().ref(".info/connected");
             var presenceRef = database.ref('presence');
             var userRef = database.ref('presence/' + auth.currentUser.uid);
-            connectedRef.on('value', function(snap) {
+            connectedRef.on('value', function (snap) {
               if (snap.val()) {
                 userRef.onDisconnect().remove();
                 var userEmail = user.email;
                 var displayName = user.displayName;
-                userRef.set({ name: displayName, id: my_id, email: userEmail });
+                var photoURL = user.photoURL;
+                userRef.set({ name: displayName, id: my_id, email: userEmail, photoURL });
 
-                presenceRef.on('value', function(snap){
-                  var users = snap.val();
-                  console.log(users);
-                })
+                presenceRef.on('value', function (snap) {
+                  $('#slide-out').html('');
+                  snap.forEach(function (childSnap) {
+                    var userData = childSnap.val();
+                    var userKey = childSnap.key;
+
+                    if (userData !== null) {
+                      var userEmail = userData.email || "";
+                      var userID = userData.id || "";
+                      var userName = userData.name || "";
+                      var userPic = userData.photoURL || "";
+                    }
+
+                    var toDisplay = "";
+                    toDisplay += "<li>";
+                    toDisplay += "\t<a href= \"#!\" class=\"waves-effect\">";
+                    toDisplay += "\n\t\t<span class=\"status green\"></span>";
+                    toDisplay += "\n\t\t<img src=\"" + userPic +"\" alt=\"" + userEmail + "\" class=\"circle online\">";
+                    toDisplay += "\n\t\t<span class=\"name\">" + userName +"</span>";
+                    toDisplay += "\n\t\t<br><small class=\"email\">"+  userEmail +"</small>";
+                    toDisplay += "\n\t</a>";
+                    toDisplay += "\n</li>";
+
+                    $('#slide-out').append(toDisplay);
+                  });
+                });
               }
             });
 
