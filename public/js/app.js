@@ -110,6 +110,7 @@ $(document)
             var my_id = shortid.gen();
 
             var connectedRef = firebase.database().ref(".info/connected");
+            var presenceRef = database.ref('presence');
             var userRef = database.ref('presence/' + auth.currentUser.uid);
             connectedRef.on('value', function(snap) {
               if (snap.val()) {
@@ -117,7 +118,11 @@ $(document)
                 var userEmail = user.email;
                 var displayName = user.displayName;
                 userRef.set({ name: displayName, id: my_id, email: userEmail });
-                console.log("I am logged in check firebase!!!");
+
+                presenceRef.on('value', function(snap){
+                  var users = snap.val();
+                  console.log(users);
+                })
               }
             });
 

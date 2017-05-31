@@ -1,0 +1,45 @@
+Arguments: 
+  /home/jalasem/n/bin/node /home/jalasem/n/bin/yarn
+
+PATH: 
+  /home/jalasem/bin:/home/jalasem/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games:/home/jalasem/n/bin
+
+Yarn version: 
+  0.24.5
+
+Node version: 
+  7.10.0
+
+Platform: 
+  linux x64
+
+npm manifest: 
+  {
+    "name": "peer2talk",
+    "version": "0.0.1",
+    "description": "A Webrtc Application",
+    "main": "peer-server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Ajala AbdulSamii & Annazofy",
+    "license": "BSD-3-Clause",
+    "dependencies": {
+      "express": "^4.15.2",
+      "mime-types": "^2.1.15",
+      "peer": "^0.2.8"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: https://registry.yarnpkg.com/peer: ETIMEDOUT
+      at Timeout._onTimeout (/home/jalasem/n/lib/node_modules/yarn/node_modules/request/request.js:852:19)
+      at ontimeout (timers.js:386:14)
+      at tryOnTimeout (timers.js:250:5)
+      at Timer.listOnTimeout (timers.js:214:5)

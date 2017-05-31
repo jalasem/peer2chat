@@ -4,7 +4,7 @@ var app = express();
 var path = require('path');
 var ExpressPeerServer = require('peer').ExpressPeerServer;
 
-app.set('port', (process.env.PORT || 3000));
+app.set('port', (process.env.PORT || 3030));
 
 app.use(express.static('public'));
 
