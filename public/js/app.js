@@ -22,6 +22,7 @@ $(document)
 
     const userListRef = firebase.database().ref("USERS_ONLINE");
     const myUserRef = userListRef.push();
+    var currentTimer = null;
 
     // firebase.database().ref(".info/connected")
     //   .on(
@@ -134,7 +135,7 @@ $(document)
                     }
 
                     var toDisplay = "";
-                    toDisplay += "<li>";
+                    toDisplay += "<li id=\"" + userID + "\">";
                     toDisplay += "\t<a href= \"#!\" class=\"waves-effect\">";
                     toDisplay += "\n\t\t<span class=\"status green\"></span>";
                     toDisplay += "\n\t\t<img src=\"" + userPic +"\" alt=\"" + userEmail + "\" class=\"circle online\">";
@@ -144,6 +145,28 @@ $(document)
                     toDisplay += "\n</li>";
 
                     $('#slide-out').append(toDisplay);
+
+                    $('#slide-out li').bind('click', function(e){
+                      if (!currentTimer) {
+                        currentTimer = true;
+                        setTimeout(function () {
+                          if (currentTimer) {
+                            currentTimer = null;
+
+                            var sureToMakeCall = confirm("Click \"OK\" to make call to Lagbaja");
+                            if(sureToMakeCall){
+                              console.log("initiating call to  user with ID " + e.currentTarget.id);
+                              console.log(e.currentTarget.attributes[0].childNodes);
+
+// data, text, childNodes[0], span.name, children, children[0]
+
+                            } else {
+                              console.log("call attempt to " + e.currentTarget.id + " cancelled");
+                            }
+                          }
+                        },200);
+                      }
+                    });
                   });
                 });
               }

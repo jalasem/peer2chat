@@ -115,9 +115,9 @@ footer {
 
 #slide-out li a img {
     width: 3rem;
+    height: 3rem;
     float: left;
     margin: 5px 0.5rem;
-    border: 1px solid #E91E63;
 }
 
 #slide-out li a img.online {
@@ -145,7 +145,7 @@ footer {
 }
 
 #slide-out li {
-    /*padding: 5px 0;*/
+    border-bottom: 1px solid rgba(76, 175, 80, 0.28);
 }
 
 #app-area {
