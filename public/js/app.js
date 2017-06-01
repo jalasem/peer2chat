@@ -135,7 +135,7 @@ $(document)
                     }
 
                     var toDisplay = "";
-                    toDisplay += "<li id=\"" + userID + "\">";
+                    toDisplay += "<li id=\"" + userID + "\" class=\"" + userName + "\">";
                     toDisplay += "\t<a href= \"#!\" class=\"waves-effect\">";
                     toDisplay += "\n\t\t<span class=\"status green\"></span>";
                     toDisplay += "\n\t\t<img src=\"" + userPic +"\" alt=\"" + userEmail + "\" class=\"circle online\">";
@@ -156,7 +156,8 @@ $(document)
                             var sureToMakeCall = confirm("Click \"OK\" to make call to Lagbaja");
                             if(sureToMakeCall){
                               console.log("initiating call to  user with ID " + e.currentTarget.id);
-                              console.log(e.currentTarget.attributes[0].childNodes);
+                              window.eventt = e;
+                              console.log(window.eventt);
 
 // data, text, childNodes[0], span.name, children, children[0]
 
