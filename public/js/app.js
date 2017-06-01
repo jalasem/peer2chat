@@ -158,7 +158,7 @@ $(document)
                               if(userID != my_id){
                                 console.log("initiating call to  user with ID " + e.currentTarget.id);
                               } else {
-                                alert("you can't make a call to yourself");
+                                alert("Sorry, you can't make a call to yourself");
                               }
                             } else {
                               console.log("call attempt to " + e.currentTarget.id + " cancelled");
