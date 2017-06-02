@@ -236,12 +236,15 @@ $(document)
             });
 
             peer.on('call', function(call){
+              var caller = call.peer, caller_data = firebase.database().ref('onlineUsers/' + call.peer);
+              caller_data.on('value', function(snap){
+                console.log(snap.val());
+              });
               $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
               $('#accept-call').click(function(){
                 onRecieveCall(call);
                 $('.popup, .popup-overlay').addClass('hide');
               });
-              console.log(call.peer);
               $('#reject-call').click(function(){
                 $('.popup, .popup-overlay').addClass('hide');
               });
