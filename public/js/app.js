@@ -238,7 +238,9 @@ $(document)
             peer.on('call', function(call){
               var caller = call.peer, caller_data = firebase.database().ref('onlineUsers/' + call.peer);
               caller_data.on('value', function(snap){
-                console.log(snap.val());
+                var caller_name = snap.val().name, caller_pic = snap.val().photoURL;
+                $('.caller-displayName').text();
+                $('img.caller-pic').attr('src', caller_pic);
               });
               $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
               $('#accept-call').click(function(){
