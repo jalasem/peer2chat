@@ -168,6 +168,14 @@ $(document)
                                 console.log("initiating call to  user with ID " + e.currentTarget.id);
                                 peer_id = e.currentTarget.id;
                                 name = e.currentTarget.className;
+
+                                var call = peer.call(peer_id, window.localStream);
+
+                                call.on('stream', function(stream) {
+                                  window.peer_stream = stream;
+                                  onRecieveStream(stream, 'him');
+                                });
+
                                 conn = peer.connect(peer_id, {
                                   metadata: {
                                     'username': name
@@ -218,6 +226,18 @@ $(document)
               peer_id = connection.peer;
               conn.on('data', handleMessage);
             });
+
+            peer.on('call', function(call){
+              onRecieveCall(call);
+            });
+
+            function onRecieveCall(call){
+              call.answer(window.localStream);
+              call.on('stream', function(stream){
+                window.peer_stream = stream;
+                onRecieveStream(stream, 'him')
+              });
+            }
 
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
