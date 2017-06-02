@@ -1,16 +1,17 @@
-
-var express = require('express');
-var app = express();
-var path = require('path');
-var ExpressPeerServer = require('peer').ExpressPeerServer;
+var express = require('express'),
+    secure = require('express-force-https'),
+    app = express(),
+    path = require('path'),
+    ExpressPeerServer = require('peer').ExpressPeerServer;
 
 app.set('port', (process.env.PORT || 3030));
-
+app.use(secure);
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  const index = path.join(__dirname, 'public', 'index.html');
-  res.sendFile(index);
+    const index = path.join(__dirname, 'public', 'index.html');
+    res.sendFile(index);
+    return res.redirect(['https://', host].join(''));
 });
 
 var server = app.listen(app.get('port'), () => {

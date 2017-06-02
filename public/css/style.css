@@ -78,14 +78,14 @@ ul.social i.icon {
     display: -ms-flexbox;
     display: flex;
     -webkit-justify-content: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
     -webkit-align-items: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     -webkit-flex-direction: column;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
 }
 
 body.stranger {
@@ -107,8 +107,8 @@ footer {
 
 #slide-out.side-nav.fixed {
     -webkit-transform: translateX(0px) translateY(65px) !important;
-        -ms-transform: translateX(0px) translateY(65px) !important;
-            transform: translateX(0px) translateY(65px) !important;
+    -ms-transform: translateX(0px) translateY(65px) !important;
+    transform: translateX(0px) translateY(65px) !important;
     height: calc(100vh - 65px);
     overflow-y: auto;
 }
@@ -225,4 +225,81 @@ span.peer {
     margin: 0.3rem 0;
     min-width: 55%;
     text-align: center;
+}
+
+.popup .popup-overlay {
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.38);
+    position: fixed;
+    overflow-y: auto;
+    top: 0;
+    right: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.popup .popup-header {
+    padding: 0.5rem 1.5rem;
+    color: white;
+    font-size: 1.9rem;
+}
+
+.popup .popup-content {
+    padding: 0.5rem 1rem 1rem;
+    margin-bottom: 0;
+}
+
+.popup .card-panel,
+.popup .card {
+    border: 1px solid rgba(158, 158, 158, 0.75);
+}
+
+.popup .card-panel:hover,
+.popup .card:hover {
+    border: 0px solid;
+}
+
+.popup .popup-body {
+    position: fixed;
+    max-width: 40rem;
+    top: 64px;
+    right: 0;
+    left: 0;
+    z-index: 1100;
+}
+
+.popup-body .close-area {
+    height: calc(90vh - 100px);
+    width: 100%;
+    background: rgba(128, 128, 128, 0);
+    position: absolute;
+}
+
+.popup-header .close-btn {
+    position: absolute;
+    top: 0rem;
+    right: 0rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.popup .card-panel.hoverable {
+    cursor: pointer;
+    min-height: 20rem;
+}
+
+.popup .popup-content img.caller-pic {
+    width: 10rem;
+}
+
+.popup .card-panel p,
+.popup .card p {
+    font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    .popup .card-panel.hoverable {
+        cursor: pointer;
+        min-height: auto;
+    }
 }
