@@ -241,7 +241,7 @@ $(document)
                 onRecieveCall(call);
                 $('.popup, .popup-overlay').addClass('hide');
               });
-              console.log(call);
+              console.log(call.peer);
               $('#reject-call').click(function(){
                 $('.popup, .popup-overlay').addClass('hide');
               });
