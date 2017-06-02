@@ -114,7 +114,7 @@ $(document)
             var messages = [],
               my_id = shortid.gen(),
               peer_id, name, conn;
-              window.userPeerID = my_id;
+            window.userPeerID = my_id;
 
             var connectedRef = firebase.database().ref(".info/connected");
             var presenceRef = database.ref('presence');
@@ -179,7 +179,7 @@ $(document)
 
                                 var call = peer.call(peer_id, window.localStream);
 
-                                call.on('stream', function(stream) {
+                                call.on('stream', function (stream) {
                                   window.peer_stream = stream;
                                   onRecieveStream(stream, 'him');
                                 });
@@ -235,27 +235,29 @@ $(document)
               conn.on('data', handleMessage);
             });
 
-            peer.on('call', function(call){
-              var caller = call.peer, caller_data = firebase.database().ref('onlineUsers/' + call.peer);
-              caller_data.on('value', function(snap){
-                var caller_name = snap.val().name, caller_pic = snap.val().photoURL;
+            peer.on('call', function (call) {
+              var caller = call.peer,
+                caller_data = firebase.database().ref('onlineUsers/' + call.peer);
+              caller_data.on('value', function (snap) {
+                var caller_name = snap.val().name,
+                  caller_pic = snap.val().photoURL;
                 $('.caller-displayName').text();
                 $('img.caller-pic').attr('src', caller_pic);
               });
               $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
-              $('#accept-call').click(function(){
+              $('#accept-call').click(function () {
                 onRecieveCall(call);
                 $('.popup, .popup-overlay').addClass('hide');
               });
-              $('#reject-call').click(function(){
+              $('#reject-call').click(function () {
                 $('.popup, .popup-overlay').addClass('hide');
               });
               // onRecieveCall(call);
             });
 
-            function onRecieveCall(call){
+            function onRecieveCall(call) {
               call.answer(window.localStream);
-              call.on('stream', function(stream){
+              call.on('stream', function (stream) {
                 window.peer_stream = stream;
                 onRecieveStream(stream, 'him')
               });
