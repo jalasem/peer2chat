@@ -5,13 +5,13 @@ var express = require('express'),
     ExpressPeerServer = require('peer').ExpressPeerServer;
 
 app.set('port', (process.env.PORT || 3030));
-app.use(secure);
+// app.use(secure);
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
     const index = path.join(__dirname, 'public', 'index.html');
     res.sendFile(index);
-    return res.redirect(['https://', host].join(''));
+    // return res.redirect(['https://', host].join(''));
 });
 
 var server = app.listen(app.get('port'), () => {

@@ -78,6 +78,7 @@ $(document)
           });
       } else {
         database.ref('presence/' + auth.currentUser.uid).remove();
+        database.ref('onlineUsers/' + window.userPeerID).remove();
         auth
           .signOut()
           .then(function () {
@@ -113,13 +114,16 @@ $(document)
             var messages = [],
               my_id = shortid.gen(),
               peer_id, name, conn;
+              window.userPeerID = my_id;
 
             var connectedRef = firebase.database().ref(".info/connected");
             var presenceRef = database.ref('presence');
             var userRef = database.ref('presence/' + auth.currentUser.uid);
+            var onlineUser = database.ref('onlineUsers/' + my_id);
             connectedRef.on('value', function (snap) {
               if (snap.val()) {
                 userRef.onDisconnect().remove();
+                onlineUser.onDisconnect().remove();
                 var userEmail = user.email;
                 var displayName = user.displayName;
                 var photoURL = user.photoURL;
@@ -127,6 +131,10 @@ $(document)
                   name: displayName,
                   id: my_id,
                   email: userEmail,
+                  photoURL
+                });
+                onlineUser.set({
+                  name: displayName,
                   photoURL
                 });
 
@@ -228,7 +236,16 @@ $(document)
             });
 
             peer.on('call', function(call){
-              onRecieveCall(call);
+              $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
+              $('#accept-call').click(function(){
+                onRecieveCall(call);
+                $('.popup, .popup-overlay').addClass('hide');
+              });
+              console.log(call);
+              $('#reject-call').click(function(){
+                $('.popup, .popup-overlay').addClass('hide');
+              });
+              // onRecieveCall(call);
             });
 
             function onRecieveCall(call){
