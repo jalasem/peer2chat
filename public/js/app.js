@@ -268,7 +268,7 @@ $(document)
             function getVideo(callback) {
               navigator.getUserMedia({
                 audio: true,
-                video: false
+                video: true
               }, callback, function (error) {
                 console.log(error);
                 alert('An error occured. Please try again');
