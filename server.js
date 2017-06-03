@@ -1,4 +1,4 @@
-var express = require('express'),
+const express = require('express'),
     secure = require('express-force-https'),
     app = express(),
     path = require('path'),
