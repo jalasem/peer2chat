@@ -295,23 +295,25 @@ $(document)
 
 
             function handleMessage(data) {
-              console.log("You have a new message \n: ",data);
+              console.log("You have a new message \n: ", data);
               messages.push(data);
 
-              if(data.from !== user.displayName) {
-                var remoteMessage = "";
-                remoteMessage += "<div class=\"peerMsg\">";
-                remoteMessage += "\t" + data.text;
-                remoteMessage += "</div>";
+              if (data.text.length > 0) {
+                if (data.from !== user.displayName) {
+                  var remoteMessage = "";
+                  remoteMessage += "<div class=\"peerMsg\">";
+                  remoteMessage += "\t" + data.text;
+                  remoteMessage += "</div>";
 
-                $('#display').append(remoteMessage);
-              } else {
-                var localMessage = "";
-                localMessage += "<div class=\"myMsg\">";
-                localMessage += "\t" + data.text;
-                localMessage += "</div>";
+                  $('#display').append(remoteMessage);
+                } else {
+                  var localMessage = "";
+                  localMessage += "<div class=\"myMsg\">";
+                  localMessage += "\t" + data.text;
+                  localMessage += "</div>";
 
-                $('#display').append(localMessage);
+                  $('#display').append(localMessage);
+                }
               }
             }
 
