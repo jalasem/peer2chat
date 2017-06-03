@@ -241,7 +241,7 @@ $(document)
               caller_data.on('value', function (snap) {
                 var caller_name = snap.val().name,
                   caller_pic = snap.val().photoURL;
-                $('.caller-displayName').text();
+                $('.caller-displayName').text(caller_name);
                 $('img.caller-pic').attr('src', caller_pic);
               });
               $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
@@ -268,7 +268,7 @@ $(document)
             function getVideo(callback) {
               navigator.getUserMedia({
                 audio: true,
-                video: true
+                video: false
               }, callback, function (error) {
                 console.log(error);
                 alert('An error occured. Please try again');
