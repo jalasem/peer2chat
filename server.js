@@ -1,4 +1,4 @@
-var express = require('express'),
+const express = require('express'),
     secure = require('express-force-https'),
     app = express(),
     path = require('path'),
@@ -8,7 +8,7 @@ app.set('port', (process.env.PORT || 3000));
 app.use(secure);
 app.use(express.static('public'));
 
-app.get('/', function (req, res) {
+app.get('*', function (req, res) {
     const index = path.join(__dirname, 'public', 'index.html');
     res.sendFile(index);
     // return res.redirect(['https://', host].join(''));
