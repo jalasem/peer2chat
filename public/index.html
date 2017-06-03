@@ -62,41 +62,16 @@
     <div id="app-area" class="row">
       <div class="col m9 camera" id="peer-camera">
         <span class="peer">Peer</span>
-        <video id="him" autoplay class="yellow darken-2" controls></video>
+        <video id="him" autoplay class="yellow darken-2"></video>
       </div>
       <div class="col m3 camera" id="my-camera">
         <span class="you">You</span>
-        <video id="me" class="blue darken-2" autoplay controls></video>
+        <video id="me" class="blue darken-2" autoplay></video>
         <div id="message-pad" class="blue-grey">
-          <div id="display" class="row">
-            <div class="peerMsg">
-              Hello! Are you there?
-            </div>
-            <div class="myMsg">
-              Yes! I am very much here
-            </div>
-            <div class="peerMsg">
-              How are you?
-            </div>
-            <div class="myMsg">
-              I am good
-            </div>
-            <div class="peerMsg">
-              Hello! Are you there?
-            </div>
-            <div class="myMsg">
-              Yes! I am very much here
-            </div>
-            <div class="peerMsg">
-              How are you?
-            </div>
-            <div class="myMsg">
-              I am good
-            </div>
-          </div>
+          <div id="display" class="row"></div>
           <div id="message-input">
-            <form id="input-message">
-              <input class="indigo-text text-darken-4 white" type="text" placeholder="Type message &amp; hit enter">
+            <form id="input_message">
+              <input class="indigo-text text-darken-4 white" name="message" id="messageBOX" type="text" placeholder="Type message &amp; hit enter">
             </form>
           </div>
         </div>
@@ -123,7 +98,7 @@
                   You have a call from <br>
                   <span id="caller"></span>
                 </h5>
-                <img class="caller-pic circle" src="https://lh3.googleusercontent.com/-IRTY9XV14Ls/AAAAAAAAAAI/AAAAAAAAZO4/s9UwocYRW3I/photo.jpg" alt="Ajala AbdulSamii Olalekan">
+                <img class="caller-pic circle amber darken-2">
                 <p class="flow-text blue-grey-text text-darken-4"><b class="caller-displayName"></b></p>
               </div>
             </div>

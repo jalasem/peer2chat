@@ -6,6 +6,7 @@ $(document)
       closeOnClick: true, // Closes side-nav on <a> clicks, useful for Angular/Meteor
       draggable: true // Choose whether you can drag to open on touch screens
     });
+    $('#display').scrollTop($('#display')[0].scrollHeight);
     $('.popup-overlay, .close-area, .close-btn').click(function () {
       $('.popup, .popup-overlay').addClass('hide');
     });
@@ -209,6 +210,12 @@ $(document)
               name,
               conn;
 
+            $('#input_message').submit(function (e) {
+              e.preventDefault();
+              sendMessage();
+            });
+
+
             var peer = new Peer(my_id, {
               host: window.location.hostname,
               port: window.location.port,
@@ -286,16 +293,35 @@ $(document)
               window.peer_stream = stream;
             }
 
+
             function handleMessage(data) {
+              console.log("You have a new message \n: ",data);
               messages.push(data);
 
-              // ...TODO
+              if(data.from !== user.displayName) {
+                var remoteMessage = "";
+                remoteMessage += "<div class=\"peerMsg\">";
+                remoteMessage += "\t" + data.text;
+                remoteMessage += "</div>";
+
+                $('#display').append(remoteMessage);
+              } else {
+                var localMessage = "";
+                localMessage += "<div class=\"myMsg\">";
+                localMessage += "\t" + data.text;
+                localMessage += "</div>";
+
+                $('#display').append(localMessage);
+              }
             }
 
             function sendMessage() {
-              var text = $('#message').val();
+              var text = document.forms.input_message.message.value;
+              var me = user.displayName;
+              document.forms.input_message.message.value = '';
               var data = {
-                'from': name,
+                // 'to': name,
+                'from': me,
                 'text': text
               };
 

@@ -185,7 +185,13 @@ span.you {
     height: calc(100vh - 65px - 16rem);
     margin-bottom: 0;
     padding-top: 1rem;
-    overflow-y: auto;
+    padding-bottom: 1rem;
+    overflow: auto;
+    -webkit-flex-grow: 1;
+        -ms-flex-positive: 1;
+            flex-grow: 1;
+    box-sizing: border-box;
+    /*overflow-y: auto;*/
 }
 
 #input-message input {
@@ -193,6 +199,13 @@ span.you {
     font-size: 1.2rem;
     padding: 0 5px;
     max-width: 96%;
+}
+
+#messageBOX {
+    font-size: 1.3rem;
+    padding: 0px 5px 10px 5px;
+    width: 95%;
+    height: 1.6rem;
 }
 
 span.peer {
@@ -214,6 +227,13 @@ span.peer {
     margin: 0.3rem 0;
     min-width: 55%;
     text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 #display .myMsg {
@@ -225,6 +245,13 @@ span.peer {
     margin: 0.3rem 0;
     min-width: 55%;
     text-align: center;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .popup .popup-overlay {
