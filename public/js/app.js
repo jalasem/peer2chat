@@ -158,7 +158,7 @@ $(document)
                     toDisplay += "\n\t\t<span class=\"status green\"></span>";
                     toDisplay += "\n\t\t<img src=\"" + userPic + "\" alt=\"" + userEmail + "\" class=\"circle online\">";
                     toDisplay += "\n\t\t<span class=\"name\">" + userName + "</span>";
-                    toDisplay += "\n\t\t<br><small class=\"email\">" + userEmail + "</small>";
+                    // toDisplay += "\n\t\t<br><small class=\"email\">" + userEmail + "</small>";
                     toDisplay += "\n\t</a>";
                     toDisplay += "\n</li>";
 
@@ -266,7 +266,7 @@ $(document)
               call.answer(window.localStream);
               call.on('stream', function (stream) {
                 window.peer_stream = stream;
-                onRecieveStream(stream, 'him')
+                onRecieveStream(stream, 'him');
               });
             }
 
