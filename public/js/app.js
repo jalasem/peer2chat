@@ -245,7 +245,7 @@ $(document)
             });
 
             peer.on('disconnected', function() {
-              peer.reconnect();
+              peer.reconnect(my_id);
               console.log("attempted to reconnect at exactly: ", (new Date()) );
             });
 
