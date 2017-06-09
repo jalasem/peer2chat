@@ -132,11 +132,11 @@ $(document)
                   name: displayName,
                   id: my_id,
                   email: userEmail,
-                  photoURL
+                  photoURL: photoURL
                 });
                 onlineUser.set({
                   name: displayName,
-                  photoURL
+                  photoURL: photoURL
                 });
 
                 presenceRef.on('value', function (snap) {
@@ -232,14 +232,21 @@ $(document)
               }
             });
 
-            peer.on('open', function () {
-              // do something when peer is initialized
+            peer.on('open', function (id) {
+              // do something when peer is initialized like
+              // console.log('my id is ' + id);
+              console.log("peer opened at exactly: ", (new Date()));
             });
 
             peer.on('connection', function (connection) {
               conn = connection;
-              peer_id = connection.peer;
+              peer_id = conn.peer;
               conn.on('data', handleMessage);
+            });
+
+            peer.on('disconnected', function() {
+              peer.reconnect();
+              console.log("attempted to reconnect at exactly: ", (new Date()) );
             });
 
             peer.on('call', function (call) {
