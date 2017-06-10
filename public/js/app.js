@@ -258,13 +258,8 @@ $(document)
               conn.on('data', handleMessage);
             });
 
-<<<<<<< HEAD
-            peer.on('disconnected', function () {
-              if (!conn) {
-=======
             peer.on('disconnected', function() {
               if(!conn) {
->>>>>>> f1db970019e95cf9e1374f74a6fed009a8b75e59
                 peer.reconnect(my_id);
                 console.log("attempted to reconnect at exactly: ", (new Date()));
               }
