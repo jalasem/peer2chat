@@ -245,8 +245,10 @@ $(document)
             });
 
             peer.on('disconnected', function() {
-              peer.reconnect(my_id);
-              console.log("attempted to reconnect at exactly: ", (new Date()) );
+              if(!conn) {
+                peer.reconnect(my_id);
+                console.log("attempted to reconnect at exactly: ", (new Date()));
+              }
             });
 
             peer.on('call', function (call) {
