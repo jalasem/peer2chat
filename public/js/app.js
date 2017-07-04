@@ -172,6 +172,11 @@ $(document)
 
                                 var call = peer.call(peer_id, window.localStream);
 
+                                $("#hangUp").click(function(){
+                                  call.close();
+                                  $('#hangUp').addClass("hide");
+                                });
+
                                 call.on('stream', function (stream) {
                                   window.peer_stream = stream;
                                   onRecieveStream(stream, 'him');
@@ -182,14 +187,6 @@ $(document)
                                   metadata: {
                                     'username': name
                                   }
-                                });
-
-                                $("#hangUp").click(function(){
-                                  call.close();
-                                  call.on('close', function(){
-                                    $("#him").attr("src","#!");
-                                    $('#hangUp').addClass("hide");
-                                  });
                                 });
 
                                 conn.on('data', handleMessage);
