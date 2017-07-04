@@ -186,8 +186,10 @@ $(document)
 
                                 $("#hangUp").click(function(){
                                   call.close();
-                                  $("#him").attr("src","#!");
-                                  $('#hangUp').addClass("hide");
+                                  call.on('close', function(){
+                                    $("#him").attr("src","#!");
+                                    $('#hangUp').addClass("hide");
+                                  });
                                 });
 
                                 conn.on('data', handleMessage);
