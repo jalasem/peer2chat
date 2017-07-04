@@ -33,10 +33,10 @@ $(document)
     // firebase.database().ref(".info/connected")   .on(     "value",     function
     // (snap) {       if (snap.val()) {         // if we lose network then remove
     // this user from the list         userListRef.push(auth.currentUser.id);
-    //  console.log(auth.currentUser.id);         myUserRef.onDisconnect()
-    // .remove();         // set user's online status
-    // setUserStatus("online");       } else {         // client has lost network
-    //      setUserStatus("offline");       }     }   );
+    // console.log(auth.currentUser.id);         myUserRef.onDisconnect() .remove();
+    //         // set user's online status setUserStatus("online");       } else {
+    //       // client has lost network      setUserStatus("offline");       }     }
+    //   );
 
     function toggleSignin() {
       if (!auth.currentUser) {
@@ -172,11 +172,6 @@ $(document)
 
                                 var call = peer.call(peer_id, window.localStream);
 
-                                $("#hangUp").click(function(){
-                                  call.close();
-                                  $('#hangUp').addClass("hide");
-                                });
-
                                 call.on('stream', function (stream) {
                                   window.peer_stream = stream;
                                   onRecieveStream(stream, 'him');
@@ -187,6 +182,13 @@ $(document)
                                   metadata: {
                                     'username': name
                                   }
+                                });
+
+                                $("#hangUp").click(function () {
+                                  call.close();
+                                  call.on("close", function () {
+                                    $('#hangUp').addClass("hide");
+                                  });
                                 });
 
                                 conn.on('data', handleMessage);
@@ -271,6 +273,12 @@ $(document)
                     .photoURL;
                 $('.caller-displayName').text(caller_name);
                 $('img.caller-pic').attr('src', caller_pic);
+              });
+              $("#hangUp").click(function () {
+                call.close();
+                call.on("close", function () {
+                  $('#hangUp').addClass("hide");
+                });
               });
               $('#call-popup, #call-popup .popup-overlay').removeClass('hide');
               $('#accept-call').click(function () {
