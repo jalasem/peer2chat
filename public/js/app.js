@@ -186,7 +186,7 @@ $(document)
 
                                 $("#hangUp").click(function(){
                                   call.close();
-                                  $("#him").attr("src","");
+                                  $("#him").attr("src","#!");
                                   $('#hangUp').addClass("hide");
                                 });
 
