@@ -265,6 +265,7 @@ span.peer {
     border-radius: 2rem;
     text-align: center;
     padding: 6px 0.5rem;
+    cursor: pointer;
 }
 
 .popup .popup-overlay {
