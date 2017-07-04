@@ -185,9 +185,8 @@ $(document)
                                 });
 
                                 $("#hangUp").click(function(){
-                                  call.close().then(function(){
-                                    $('#hangUp').addClass("hide");
-                                  })
+                                  call.close();
+                                  $('#hangUp').addClass("hide");
                                 });
 
                                 conn.on('data', handleMessage);
