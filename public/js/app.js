@@ -24,30 +24,19 @@ $(document)
     var auth = firebase.auth();
     var database = firebase.database();
 
-    const userListRef = firebase.database().ref("USERS_ONLINE");
+    const userListRef = firebase
+      .database()
+      .ref("USERS_ONLINE");
     const myUserRef = userListRef.push();
     var currentTimer = null;
 
-    // firebase.database().ref(".info/connected")
-    //   .on(
-    //     "value",
-    //     function (snap) {
-    //       if (snap.val()) {
-    //         // if we lose network then remove this user from the list
-    //         userListRef.push(auth.currentUser.id);
-    //         console.log(auth.currentUser.id);
-    //         myUserRef.onDisconnect()
-    //           .remove();
-    //         // set user's online status
-    //         setUserStatus("online");
-    //       } else {
-    //         // client has lost network
-    //         setUserStatus("offline");
-    //       }
-    //     }
-    //   );
-
-
+    // firebase.database().ref(".info/connected")   .on(     "value",     function
+    // (snap) {       if (snap.val()) {         // if we lose network then remove
+    // this user from the list         userListRef.push(auth.currentUser.id);
+    //  console.log(auth.currentUser.id);         myUserRef.onDisconnect()
+    // .remove();         // set user's online status
+    // setUserStatus("online");       } else {         // client has lost network
+    //      setUserStatus("offline");       }     }   );
 
     function toggleSignin() {
       if (!auth.currentUser) {
@@ -78,8 +67,12 @@ $(document)
             Materialize.toast(errorMessage, 5000, 'rounded');
           });
       } else {
-        database.ref('presence/' + auth.currentUser.uid).remove();
-        database.ref('onlineUsers/' + window.userPeerID).remove();
+        database
+          .ref('presence/' + auth.currentUser.uid)
+          .remove();
+        database
+          .ref('onlineUsers/' + window.userPeerID)
+          .remove();
         auth
           .signOut()
           .then(function () {
@@ -105,39 +98,38 @@ $(document)
             user
               .providerData
               .forEach(function (profile) {
-                // console.log("Sign-in provider: " + profile.providerId);
-                // console.log("  Provider-specific UID: " + profile.uid);
-                // console.log("  Name: " + profile.displayName);
-                // console.log("  Email: " + profile.email);
-                // console.log("  Photo URL: " + profile.photoURL);
+                // console.log("Sign-in provider: " + profile.providerId); console.log("
+                // Provider-specific UID: " + profile.uid); console.log("  Name: " +
+                // profile.displayName); console.log("  Email: " + profile.email); console.log("
+                //  Photo URL: " + profile.photoURL);
               });
 
             var messages = [],
               my_id = shortid.gen(),
-              peer_id, name, conn;
+              peer_id,
+              name,
+              conn;
             window.userPeerID = my_id;
 
-            var connectedRef = firebase.database().ref(".info/connected");
+            var connectedRef = firebase
+              .database()
+              .ref(".info/connected");
             var presenceRef = database.ref('presence');
             var userRef = database.ref('presence/' + auth.currentUser.uid);
             var onlineUser = database.ref('onlineUsers/' + my_id);
             connectedRef.on('value', function (snap) {
               if (snap.val()) {
-                userRef.onDisconnect().remove();
-                onlineUser.onDisconnect().remove();
+                userRef
+                  .onDisconnect()
+                  .remove();
+                onlineUser
+                  .onDisconnect()
+                  .remove();
                 var userEmail = user.email;
                 var displayName = user.displayName;
                 var photoURL = user.photoURL;
-                userRef.set({
-                  name: displayName,
-                  id: my_id,
-                  email: userEmail,
-                  photoURL: photoURL
-                });
-                onlineUser.set({
-                  name: displayName,
-                  photoURL: photoURL
-                });
+                userRef.set({name: displayName, id: my_id, email: userEmail, photoURL: photoURL});
+                onlineUser.set({name: displayName, photoURL: photoURL});
 
                 presenceRef.on('value', function (snap) {
                   $('#slide-out').html('');
@@ -183,6 +175,7 @@ $(document)
                                 call.on('stream', function (stream) {
                                   window.peer_stream = stream;
                                   onRecieveStream(stream, 'him');
+                                  $("#hangUp").removeClass("hide");
                                 });
 
                                 conn = peer.connect(peer_id, {
@@ -190,6 +183,13 @@ $(document)
                                     'username': name
                                   }
                                 });
+
+                                $("#hangUp").click(function(){
+                                  call.close().then(function(){
+                                    $('#hangUp').addClass("hide");
+                                  })
+                                });
+
                                 conn.on('data', handleMessage);
                               } else {
                                 alert("Sorry, you can't make a call to yourself");
@@ -215,29 +215,23 @@ $(document)
               sendMessage();
             });
 
-
             var peer = new Peer(my_id, {
               host: window.location.hostname,
               port: window.location.port,
               path: '/peerjs',
               debug: 3,
               config: {
-                // 'iceServers': [{
-                //   url: 'stun:stun1.l.google.com:19302'
-                // }, {
-                //   url: 'turn:numb.viagenie.ca',
-                //   credential: 'muazkh',
-                //   username: 'webrtc@live.com'
-                // }]
-                'iceServers': [{
-                    'url': 'stun:stun.l.google.com:19302'
-                  },
+                // 'iceServers': [{   url: 'stun:stun1.l.google.com:19302' }, {   url:
+                // 'turn:numb.viagenie.ca',   credential: 'muazkh',   username:
+                // 'webrtc@live.com' }]
+                'iceServers': [
                   {
+                    'url': 'stun:stun.l.google.com:19302'
+                  }, {
                     'url': 'turn:192.158.29.39:3478?transport=udp',
                     'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
                     'username': '28224511:1379330808'
-                  },
-                  {
+                  }, {
                     'url': 'turn:192.158.29.39:3478?transport=tcp',
                     'credential': 'JZEOEt2V3Qb0y27GRntt2u2PAYA=',
                     'username': '28224511:1379330808'
@@ -247,8 +241,7 @@ $(document)
             });
 
             peer.on('open', function (id) {
-              // do something when peer is initialized like
-              // console.log('my id is ' + id);
+              // do something when peer is initialized like console.log('my id is ' + id);
               console.log("peer opened at exactly: ", (new Date()));
             });
 
@@ -258,8 +251,8 @@ $(document)
               conn.on('data', handleMessage);
             });
 
-            peer.on('disconnected', function() {
-              if(!conn) {
+            peer.on('disconnected', function () {
+              if (!conn) {
                 peer.reconnect(my_id);
                 console.log("attempted to reconnect at exactly: ", (new Date()));
               }
@@ -267,10 +260,16 @@ $(document)
 
             peer.on('call', function (call) {
               var caller = call.peer,
-                caller_data = firebase.database().ref('onlineUsers/' + call.peer);
+                caller_data = firebase
+                  .database()
+                  .ref('onlineUsers/' + call.peer);
               caller_data.on('value', function (snap) {
-                var caller_name = snap.val().name,
-                  caller_pic = snap.val().photoURL;
+                var caller_name = snap
+                    .val()
+                    .name,
+                  caller_pic = snap
+                    .val()
+                    .photoURL;
                 $('.caller-displayName').text(caller_name);
                 $('img.caller-pic').attr('src', caller_pic);
               });
@@ -290,19 +289,25 @@ $(document)
               call.on('stream', function (stream) {
                 window.peer_stream = stream;
                 onRecieveStream(stream, 'him');
+                $('#hangUp').removeClass('hide');
+                $('#hangUp').click(function () {
+                  console.log("attempting to close call");
+                  // dataConnection.close(); mediaConnection.close();
+                });
               });
             }
 
             navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
             function getVideo(callback) {
-              navigator.getUserMedia({
-                audio: true,
-                video: true
-              }, callback, function (error) {
-                console.log(error);
-                alert('An error occured. Please try again');
-              });
+              navigator
+                .getUserMedia({
+                  audio: true,
+                  video: true
+                }, callback, function (error) {
+                  console.log(error);
+                  alert('An error occured. Please try again');
+                });
             }
 
             getVideo(function (stream) {
@@ -312,10 +317,11 @@ $(document)
 
             function onRecieveStream(stream, element_id) {
               var video = $('#' + element_id)[0];
-              video.src = window.URL.createObjectURL(stream);
+              video.src = window
+                .URL
+                .createObjectURL(stream);
               window.peer_stream = stream;
             }
-
 
             function handleMessage(data) {
               console.log("You have a new message \n: ", data);
