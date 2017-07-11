@@ -1,5 +1,6 @@
 $(document)
   .ready(function () {
+    $('.modal').modal();
     $('.button-collapse').sideNav({
       menuWidth: 250, // Default is 300
       edge: 'left', // Choose the horizontal origin
@@ -9,6 +10,9 @@ $(document)
     $('#display').scrollTop($('#display')[0].scrollHeight);
     $('.popup-overlay, .close-area, .close-btn').click(function () {
       $('.popup, .popup-overlay').addClass('hide');
+    });
+    $("#openInvitePop").click(function(){
+      $('#invite-popup, #invite-popup .popup-overlay').removeClass('hide');
     });
 
     var config = {
@@ -98,6 +102,8 @@ $(document)
             user
               .providerData
               .forEach(function (profile) {
+                window.currentUserName = profile.displayName;
+                window.currentUserEmail = profile.email;
                 // console.log("Sign-in provider: " + profile.providerId); console.log("
                 // Provider-specific UID: " + profile.uid); console.log("  Name: " +
                 // profile.displayName); console.log("  Email: " + profile.email); console.log("
@@ -384,3 +390,27 @@ $(document)
     });
 
   });
+
+  function sendInvite(){
+    var fromName = window.currentUserName;
+    var fromEmail = window.currentUserEmail;
+
+    $.ajax({
+      type: "POST",
+      dataType: 'text',
+      url: "/api/invite",
+      data: {
+        toName: $("#recipientName").val(),
+        toEmail: $("#recipientEmail").val(),
+        message: $("#quickMessage").val(),
+        fromName: fromName,
+        fromEmail: fromEmail,
+      },
+      success: function(data){
+        Materialize.toast("success: " + data, 5000);
+      },
+      error: function(err){
+        Materialize.toast("error: " + JSON.stringify(err), 7000);
+      }
+    });
+  }

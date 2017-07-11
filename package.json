@@ -9,9 +9,12 @@
   "author": "Ajala AbdulSamii & Annazofy",
   "license": "BSD-3-Clause",
   "dependencies": {
+    "body-parser": "^1.17.2",
     "express": "^4.15.2",
     "express-force-https": "^1.0.0",
     "mime-types": "^2.1.15",
+    "nodemailer": "^4.0.1",
+    "nodemailer-smtp-transport": "^2.7.4",
     "peer": "^0.2.8"
   }
 }

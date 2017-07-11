@@ -87,31 +87,58 @@
       <div class="container">
         <div class="card">
           <div class="popup-header center blue-grey darken-2">
-            Call Notification
+            Invite Friend
             <span class="close-btn">
                 <i class="icon ion-close-round x2"></i>
             </span>
           </div>
           <div class="popup-content row center-align">
-            <div class="col s12">
-              <div class="card-panel hoverable">
-                <h5 class="teal-text text-darken-4">
-                  You have a call from <br>
-                  <span id="caller"></span>
-                </h5>
-                <img class="caller-pic circle amber darken-2">
-                <p class="flow-text blue-grey-text text-darken-4"><b class="caller-displayName"></b></p>
-              </div>
-            </div>
-            <div class="col s12">
-              <button class="btn-large green darken-2 waves-effect waves-light" id="accept-call">Accept Call</button>
-              <button class="btn-large red waves-effect waves-light" id="reject-call">Reject</button>
-            </div>
+
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <div id="invite-popup" class="popup animated hide">
+    <div class="popup-overlay"></div>
+    <div class="popup-body row">
+      <div class="close-area"></div>
+      <div class="container">
+        <div class="card">
+          <div class="popup-header center blue-grey darken-2">
+            Friend&rsquo;s Invitation
+            <span class="close-btn">
+                <i class="icon ion-close-round x2"></i>
+            </span>
+          </div>
+          <div class="popup-content row center-align">
+            <form class="col s12" onsubmit="sendInvite(); return false;">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input id="recipientName" type="text" class="validate" value="Aishat" required>
+                  <label for="recipientName">Friend&rsquo;s Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input id="recipientEmail" type="text" class="validate" value="aishatowolewa@gmail.com" required>
+                  <label for="recipientEmail">Friend&rsquo;s Email</label>
+                </div>
+                <div class="input-field col s12">
+                  <input id="quickMessage" type="text" class="validate center center-align" value="Please Let's Chat. I will be waiting for you" required>
+                  <label for="quickMessage">Quick Message</label>
+                  <!--<textarea id="quickMessage" class="materialize-textarea" required>Please Let's Chat. I will be waiting for you</textarea>-->
+                </div>
+              </div>
+              <button class="close-btn waves-effect waves-green btn-flat red white-text" type="reset">Cancel</button>
+              <button class="close-btn modal-close waves-effect waves-green btn-flat green white-text" type="submit">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a id="openInvitePop" class="btn green waves-effect" style="position: fixed;bottom: 1rem;left: 2.5rem;z-index:1000">Invite friend</button>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/materialize.min.js"></script>
