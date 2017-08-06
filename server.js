@@ -28,30 +28,37 @@ app.post("/api/invite", (req, res) => {
     let fromEmail = req.body.fromEmail;
     let subject = `${fromName} will like to chat with you on Peer2chat`;
 
-    let transporter = nodemailer.createTransport(smtpTransport({
-        service: "gmail",
+    let transporter = nodemailer.createTransport({
+        // service: "gmail",
+        // port: 465,
+        // auth: {
+        //     user: 'ajalaabdulsamii@gmail.com',
+        //     pass: '35353672'
+        // },
+
+        host: 'smtp.zoho.com',
+        port: 465,
+        secure: true, // use SSL
         auth: {
-            // user: 'newandroidohone@gmail.com', pass: '35353672'
-            user: 'ajalaabdulsamii@gmail.com',
-            pass: '35353672'
+            user: 'ohotu@coloured.com.ng',
+            pass: 'Flower10@@'
         }
-    }));
+    });
 
     let mailOptions = {
         subject,
         to: friendEmail,
-        // from: `Peer2Chat Team <newandroidohone@gmail.com>`,
-        from: `Peer2Chat Team <ajalaabdulsamii@gmail.com>`,
+        from: `Peer2Chat <ohotu@coloured.com.ng>`,
         replyTo: fromEmail,
         html: `
                 <h3>Hi ${friendName}!</h3>
                 <h4>${fromName} will like to chat with you on Peer2Chat </h4>
-                <h4>He said:</h4>
+                <h4>Message:</h4>
                 <blockquote><q>${message}</q></blockquote>
-                <a href="https://peer2chat.herokuapp.com" style="border-radius: 3px; font-size:15px; color: white; border: 1px purple solid; text-decoration:none;padding:14px 7px 14px 7px;width: 210px; max-width:210px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:6px auto 4rem;;display:block;background-color:purple;text-align:center">Join him now</a>
+                <a href="https://peer2chat.herokuapp.com" style="border-radius: 3px; font-size:15px; color: white; border: 1px purple solid; text-decoration:none;padding:14px 7px 14px 7px;width: 210px; max-width:210px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;margin:6px auto 4rem;;display:block;background-color:purple;text-align:center">Click here to Chat</a>
                 <h4>
                 Happy Chatting! <br>
-                Peer2Chat Dev Team
+                Peer2Chat
                 </h4>
             `
     };
